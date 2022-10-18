@@ -1,0 +1,54 @@
+﻿@model Cinema
+
+@{
+	ViewData["Title"] = "Delete Cinema";
+}
+
+<div class="row text">
+	<div class="col-md-8 offset-2">
+		<p>
+			<h1>Delete confirmation @Model.Name</h1>
+		</p>
+		<div class="row">
+			<div class="col-md-8 offset-2">
+					<div class="form-group text-center">
+						<img id="CinemaPicturePreview" class="border-info rounded-circle" style="max-width:150px" />
+					</div>
+					<div class="form-group">
+						<label asp-for="LogoUrl" class="control-label"></label>
+						<input asp-for="LogoUrl" class="form-control" readonly />
+						<span asp-validation-for="LogoUrl" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Name" class="control-label"></label>
+						<input asp-for="Name" class="form-control" readonly/>
+						<span asp-validation-for="Name" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Description" class="control-label"></label>
+						<input asp-for="Description" class="form-control" readonly/>
+						<span asp-validation-for="Description" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<form asp-action="Delete">
+							<input type="hidden" asp-for="Id" />
+							<input type="submit" value="Confirm" class="btn btn-danger float-right"/>
+						</form>	
+						<a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
+					</div>
+			</div>
+		</div>
+	</div>
+</div>
+@*JQuery Code*@
+@*Buradaki jquery kodu, admin sayfasında actor eklerken aktörün url'i girildikten sonra alt seçeneğe geçince onun
+	fotoğrafının direkt gözükmesini sağlıyor.
+*@
+@section Scripts{
+	<script>
+		$(document).ready(function() {
+			var output = document.getElementById('CinemaPicturePreview');
+			output.src = $("#LogoUrl").val();
+		})
+	</script>
+}
